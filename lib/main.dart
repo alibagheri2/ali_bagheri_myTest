@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: ThemeData(
-        fontFamily: 'Vazir',
-      ),
+        theme: ThemeData(
+          fontFamily: 'Vazir',
+        ),
         debugShowCheckedModeBanner: false,
         initialBinding: MyBindings(),
         home: const Directionality(

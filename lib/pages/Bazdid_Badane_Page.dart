@@ -10,86 +10,95 @@ import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:awesome_bottom_bar/widgets/inspired/inspired.dart';
 
 class Bazdid_Badane_Page extends StatelessWidget {
+  const Bazdid_Badane_Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-      body: Column(
+      //backgroundColor: Colors.grey.shade100,
+      body: Stack(
         children: [
-          const My_Text_feild(),
-          //info_window
-          Container(
-            margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(color: Colors.grey.shade400, blurRadius: 6)
-                ],
-                border: Border.all(color: Colors.grey.shade300)),
-            child: Stack(
-              children: [
-                Column(
+          const back_image(),
+          Column(
+            children: [
+              const My_Text_feild(),
+              //info_window
+              Container(
+                margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: [
+                      BoxShadow(color: Colors.grey.shade400, blurRadius: 6)
+                    ],
+                    border: Border.all(color: Colors.grey.shade300)),
+                child: Stack(
                   children: [
-                    const SizedBox(
-                      height: 35,
+                    Column(
+                      children: [
+                        const SizedBox(
+                          height: 35,
+                        ),
+                        const Shenase_Parvande(),
+                        const Name_Moshtary(),
+                        const Telephone_Hamrah(),
+                        const Mahal_Bazdid(),
+                        //gray_info_box
+                        Container(
+                          margin: const EdgeInsets.only(
+                              top: 20, right: 15, left: 15, bottom: 20),
+                          decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            children: const [
+                              Vaziat_Parvande(),
+                              Zaman_Bazdid(),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 40),
+                          child: Container(
+                            width: 135,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(7),
+                                border: Border.all(
+                                    color: const Color(0xff2C4B7D),
+                                    width: 1.8)),
+                            child: const Center(
+                                child: Text(
+                              'ورود به صفحه پرونده',
+                              style: TextStyle(color: Color(0xff2C4B7D)),
+                            )),
+                          ),
+                        )
+                      ],
                     ),
-                    const Shenase_Parvande(),
-                    const Name_Moshtary(),
-                    const Telephone_Hamrah(),
-                    const Mahal_Bazdid(),
-                    //gray_info_box
-                    Container(
-                      margin: const EdgeInsets.only(
-                          top: 20, right: 15, left: 15, bottom: 20),
-                      decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Column(
-                        children: const [
-                          Vaziat_Parvande(),
-                          Zaman_Bazdid(),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 40),
-                      child: Container(
-                        width: 135,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(7),
-                            border: Border.all(
-                                color: const Color(0xff2C4B7D), width: 1.8)),
-                        child: const Center(
-                            child: Text(
-                          'ورود به صفحه پرونده',
-                          style: TextStyle(color: Color(0xff2C4B7D)),
-                        )),
-                      ),
-                    )
+                    const Positioned(
+                        top: -10,
+                        left: -10.5,
+                        child: Icon(Icons.bookmark_sharp,
+                            color: Color(0xff2C4B7D), size: 50,shadows: [Shadow(color: Colors.grey,blurRadius: 20)],)),
+                    const Positioned(
+                        top: 3,
+                        left: 1.2,
+                        child: Text('خودم',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold))),
+                    const my_hexagon(),
                   ],
                 ),
-                const Positioned(
-                    top: -10,
-                    left: -10.5,
-                    child: Icon(Icons.bookmark_sharp,
-                        color: Color(0xff2C4B7D), size: 50)),
-                const Positioned(
-                    top: 3,
-                    left: 1.2,
-                    child: Text('خودم',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold))),
-                my_hexagon(),
-              ],
-            ),
-          )
+              )
+            ],
+          ),
         ],
       ),
+
       bottomNavigationBar: Obx(() {
         return SingleChildScrollView(
           child: BottomBarInspiredOutside(
@@ -111,8 +120,8 @@ class Bazdid_Badane_Page extends StatelessWidget {
             onTap: (int index) {
               Get.find<Bottom_Icons_Controller>().index.value = index;
             },
-            titleStyle: const TextStyle(fontSize: 10,fontWeight: FontWeight.w900,fontFamily: 'Vazir'),
-
+            titleStyle: const TextStyle(
+                fontSize: 10, fontWeight: FontWeight.w900, fontFamily: 'Vazir'),
             animated: true,
             radius: 15,
             itemStyle: ItemStyle.hexagon,
@@ -121,6 +130,24 @@ class Bazdid_Badane_Page extends StatelessWidget {
           ),
         );
       }),
+    );
+  }
+}
+
+class back_image extends StatelessWidget {
+  const back_image({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: Get.width,
+      height: Get.height,
+      child: const Image(
+        image: AssetImage("assets/images/background.jpg"),
+        fit: BoxFit.cover,
+      ),
     );
   }
 }
@@ -396,13 +423,17 @@ class My_Text_feild extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(5),
           ),
-          child: const TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'شناسه پرونده را وارد نمایید',
+          child: const Padding(
+            padding: EdgeInsets.only(right: 15,left: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'شناسه پرونده را وارد نمایید',
+                hintStyle: TextStyle(fontSize: 13,fontWeight: FontWeight.w300)
+              ),
+              cursorColor: Colors.black,
+              cursorHeight: 30,
             ),
-            cursorColor: Colors.black,
-            cursorHeight: 30,
           ),
         ),
         const Positioned(left: 25, top: 35, child: Icon(Icons.search))

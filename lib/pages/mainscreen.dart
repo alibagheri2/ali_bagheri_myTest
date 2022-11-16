@@ -15,12 +15,16 @@ class MainScreen extends StatelessWidget {
     final TabController tab = Get.find<TabBar_controller>().tabController;
     //scaffold
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-      appBar: my_appbar(),
-      body: Column(
-        children: [my_tabbar(tab: tab), tabbar_veiw(tab: tab)],
-      ),
-    );
+        backgroundColor: Colors.grey.shade100,
+        appBar: my_appbar(),
+        body: Stack(
+          children: [
+            const back_image(),
+            Column(
+              children: [my_tabbar(tab: tab), tabbar_veiw(tab: tab)],
+            ),
+          ],
+        ));
   }
 
   AppBar my_appbar() {
@@ -39,6 +43,24 @@ class MainScreen extends StatelessWidget {
     );
   }
 }
+
+class back_image extends StatelessWidget {
+  const back_image({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: Get.width,
+      child: const Image(
+        image: AssetImage("assets/images/background.jpg"),
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+}
+
 class tabbar_veiw extends StatelessWidget {
   const tabbar_veiw({
     Key? key,
@@ -52,12 +74,12 @@ class tabbar_veiw extends StatelessWidget {
     return Expanded(
       child: TabBarView(
         controller: tab,
-        children: [
-          const Tab(
+        children: const [
+          Tab(
             text: 'صدور بیمه بدنه',
           ),
           Bazdid_Badane_Page(),
-          const Tab(
+          Tab(
             text: 'اعلام خسارت',
           )
         ],
